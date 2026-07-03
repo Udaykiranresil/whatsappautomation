@@ -2,7 +2,6 @@ require('dotenv').config();
 const cron = require('node-cron');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
-const puppeteer = require('puppeteer');
 const { createClient } = require('@supabase/supabase-js');
 
 const {
@@ -40,8 +39,7 @@ const client = new Client({
   }),
 
   puppeteer: {
-    executablePath: puppeteer.executablePath(),
-
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome-stable",
     headless: true,
 
     args: [
@@ -49,7 +47,6 @@ const client = new Client({
       "--disable-setuid-sandbox",
       "--disable-dev-shm-usage",
       "--disable-gpu",
-      "--no-first-run",
       "--no-zygote",
       "--single-process"
     ]
