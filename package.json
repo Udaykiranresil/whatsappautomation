@@ -1,0 +1,18 @@
+{
+  "name": "task-rail-whatsapp-sender",
+  "version": "1.0.0",
+  "description": "Sends daily tasks from Supabase to a WhatsApp group using whatsapp-web.js",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "list-groups": "node list-groups.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "dotenv": "^16.4.5",
+    "node-cron": "^3.0.3",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.26.0"
+  }
+}
