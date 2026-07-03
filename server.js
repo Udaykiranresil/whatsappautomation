@@ -49,6 +49,7 @@ const browserPath = puppeteer.executablePath();
 console.log("Chrome Path:", browserPath);
 
 const client = new Client({
+  authStrategy: new LocalAuth(),
   puppeteer: {
     headless: true,
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
