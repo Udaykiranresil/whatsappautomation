@@ -33,15 +33,20 @@ const supabase = createClient(
 // -----------------------------
 // WhatsApp Client
 // -----------------------------
+const puppeteer = require("puppeteer");
+
+const browserPath = puppeteer.executablePath();
+
+console.log("Chrome Path:", browserPath);
+
 const client = new Client({
   authStrategy: new LocalAuth({
     dataPath: "./.wwebjs_auth"
   }),
 
   puppeteer: {
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/google-chrome-stable",
+    executablePath: browserPath,
     headless: true,
-
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
