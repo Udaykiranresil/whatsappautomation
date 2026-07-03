@@ -2,6 +2,7 @@ require('dotenv').config();
 const cron = require('node-cron');
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
+const puppeteer = require('puppeteer');
 const { createClient } = require('@supabase/supabase-js');
 
 const {
@@ -37,11 +38,20 @@ const client = new Client({
   authStrategy: new LocalAuth({
     dataPath: "./.wwebjs_auth"
   }),
+
   puppeteer: {
+    executablePath: puppeteer.executablePath(),
+
     headless: true,
+
     args: [
       "--no-sandbox",
-      "--disable-setuid-sandbox"
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-gpu",
+      "--no-first-run",
+      "--no-zygote",
+      "--single-process"
     ]
   }
 });
